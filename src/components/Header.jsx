@@ -1,6 +1,8 @@
 import { Link } from 'react-router-dom';
 import './header.css'
 import { useAuth } from './security/AuthContext';
+import React from 'react';
+
 export default function Header() {
   const auth = useAuth()
   return (
