@@ -78,6 +78,9 @@ export default function Employee() {
     if (values.email.length === 0) {
       error.email = "email is required!";
     }
+    if (values.departmentId.length === 0) {
+      error.departmentId = "Please select a department!";
+    }
 
     return error
   }
@@ -170,13 +173,19 @@ export default function Employee() {
                     name="departmentId"
                     as="select"
                   >
-                    <option selected>Open this select menu</option>
+
+                    <option selected>Select Department</option>
                     {departmentList.map((ele) => 
                       <option value={ele.id} key={ele.id}>
                         {ele.departmentName}
                       </option>
                     )}
                   </Field>
+                  <ErrorMessage
+                    name="departmentId"
+                    component="div"
+                    className="alert alert-warning m-2 "
+                  />
                 </div>
 
                 <button type="submit" className="btn btn-success">
