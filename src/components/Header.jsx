@@ -14,7 +14,7 @@ export default function Header() {
             href="https://vaibhav-tiwari-portfolio.web.app/"
             target="_blank"
           >
-            Your Website
+            My Portfolio
           </a>
           <button
             className="navbar-toggler"
@@ -31,13 +31,13 @@ export default function Header() {
             {auth.isAuthenticated && (
               <ul className="navbar-nav mr-auto">
                 <li className="nav-item active">
-                  <Link className="nav-link" to="/">
-                    Home
+                  <Link className="nav-link" to="/employees">
+                    Employees
                   </Link>
                 </li>
                 <li className="nav-item">
-                  <Link className="nav-link" to="/todos">
-                    Todos
+                  <Link className="nav-link" to="/departments">
+                    Departments
                   </Link>
                 </li>
               </ul>

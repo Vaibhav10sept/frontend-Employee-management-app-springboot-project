@@ -1,6 +1,6 @@
 import { createContext, useContext, useState } from "react"
-import { executeJWTAuthentication } from "../todo/api/todoApiService";
-import { apiClient } from "../todo/api/apiClient";
+import { executeJWTAuthentication } from "../todo/Services/EmployeeApiService";
+import { apiClient } from "../todo/Services/apiClient";
 import React from 'react';
 
 const AuthContext = createContext();
@@ -8,7 +8,7 @@ const AuthContext = createContext();
 export const useAuth = () => useContext(AuthContext)
 
 export default function AuthContextWrapper({ children }) {
-    const [isAuthenticated, setIsAuthenticated] = useState(false)
+    const [isAuthenticated, setIsAuthenticated] = useState(true)
     const [username, setUsername] = useState(null)
     const [token, setToken] = useState(null)
 
@@ -48,32 +48,34 @@ export default function AuthContextWrapper({ children }) {
         // .catch(err => {
         //     console.log('jwt err '+ err)
         // })
+        setIsAuthenticated(true)
+        setUsername('user')
+        return true;
+        // const res = await executeJWTAuthentication(username, password)
+        // console.log('login test ', res)
+        // try {
+        //     if(res.status === 200) {
+        //         const JwtToken = 'Bearer ' + res.data.token
+        //         setIsAuthenticated(true)
+        //         setUsername(username)
+        //         setToken(JwtToken)
+        //         console.log('jwt token ', JwtToken) 
 
-        const res = await executeJWTAuthentication(username, password)
-        console.log('login test ', res)
-        try {
-            if(res.status === 200) {
-                const JwtToken = 'Bearer ' + res.data.token
-                setIsAuthenticated(true)
-                setUsername(username)
-                setToken(JwtToken)
-                console.log('jwt token ', JwtToken) 
-
-                apiClient.interceptors.request.use(config => {
-                    config.headers.Authorization = JwtToken 
-                    return config
-                })
-                return true
-            }
-            else {
-                logout() 
-                return false
-            }
-        }
-        catch(err) {
-            logout()
-            return false
-        }
+        //         apiClient.interceptors.request.use(config => {
+        //             config.headers.Authorization = JwtToken 
+        //             return config
+        //         })
+        //         return true
+        //     }
+        //     else {
+        //         logout() 
+        //         return false
+        //     }
+        // }
+        // catch(err) {
+        //     logout()
+        //     return false
+        // }
     }
 
 

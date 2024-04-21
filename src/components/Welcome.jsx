@@ -9,7 +9,7 @@ export default function Welcome() {
       <>
         <h1>Welcome {auth.username}</h1>
         <div>
-          Your todos <Link to="/todos">Go here</Link>
+          Your todos <Link to="/employees">Go here</Link>
         </div>
       </> 
     );
